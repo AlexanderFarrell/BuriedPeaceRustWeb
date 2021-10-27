@@ -1,13 +1,13 @@
 use crate::Closure;
-use crate::engine::engine::{Engine, GameApplication};
-use crate::engine::engine;
+use crate::engine_old::engine::{Engine, GameApplication};
+use crate::engine_old::engine;
 use std::cell::RefCell;
 use std::rc::Rc;
 use std::sync::{Arc, Mutex};
 use js_sys::Array;
 use wasm_bindgen::JsCast;
 use wasm_bindgen::prelude::*;
-use crate::engine::web_page_helper::request_animation_frame;
+use crate::engine_old::web_page_helper::request_animation_frame;
 
 pub struct App<G: 'static + GameApplication> {
     game: Arc<Mutex<G>>,
@@ -24,7 +24,7 @@ impl<G: 'static + GameApplication> App<G> {
 
     fn run(&self, engine: Arc<Mutex<Engine>>, game: Arc<Mutex<G>>) {
         {
-            //engine.clone().lock().unwrap().start();
+            //engine_old.clone().lock().unwrap().start();
             game.clone().lock().unwrap().start(engine.clone());
         }
 

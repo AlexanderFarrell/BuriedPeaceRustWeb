@@ -7,7 +7,7 @@ use wasm_bindgen::JsCast;
 use wasm_bindgen::prelude::*;
 
 use crate::Window;
-use crate::engine::visual::Visual;
+use crate::engine_old::visual::Visual;
 
 pub struct Engine {
     pub(crate) running: bool,

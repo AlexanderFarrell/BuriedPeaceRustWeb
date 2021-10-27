@@ -1,6 +1,6 @@
-use crate::engine::visual::mesh::Mesh;
+use crate::engine_old::visual::mesh::Mesh;
 use std::sync::{Arc, Mutex};
-use crate::engine::visual::material::Material;
+use crate::engine_old::visual::material::Material;
 use web_sys::WebGlRenderingContext as GL;
 
 pub struct VisibleObject {

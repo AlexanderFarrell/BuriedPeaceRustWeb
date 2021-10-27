@@ -68,7 +68,7 @@ impl<T> IdMap<T> {
 
 #[cfg(test)]
 mod id_map_tests {
-    use crate::engine::data::id_map::IdMap;
+    use crate::engine_old::data::id_map::IdMap;
 
     #[test]
     pub fn add_id_map(){

@@ -1,4 +1,4 @@
-use crate::engine::visual::shader::Shader;
+use crate::engine_old::visual::shader::Shader;
 use std::collections::HashMap;
 
 use web_sys::WebGlRenderingContext as GL;

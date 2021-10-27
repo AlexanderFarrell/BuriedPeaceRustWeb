@@ -2,8 +2,8 @@ use std::collections::{HashMap, HashSet};
 use std::fmt::{Debug, Display};
 use std::sync::{Arc, Mutex};
 
-use crate::engine::data::id_map::IdMap;
-use crate::engine::data::kind_map::KindMap;
+use crate::engine_old::data::id_map::IdMap;
+use crate::engine_old::data::kind_map::KindMap;
 use crate::wasm_bindgen::__rt::core::any::{Any, TypeId};
 use crate::wasm_bindgen::__rt::core::fmt::Formatter;
 use crate::wasm_bindgen::__rt::std::collections::hash_map::Iter;
@@ -91,8 +91,8 @@ impl Display for Noun {
 
 #[cfg(test)]
 mod realm_noun_tests {
-    use crate::engine::realm::adj::Aged;
-    use crate::engine::realm::Noun;
+    use crate::engine_old::realm::adj::Aged;
+    use crate::engine_old::realm::Noun;
 
     #[test]
     fn name_noun() {

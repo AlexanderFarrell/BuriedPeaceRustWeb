@@ -51,7 +51,7 @@ impl KindMap {
 
 #[cfg(test)]
 mod kind_map_tests {
-    use crate::engine::data::kind_map::KindMap;
+    use crate::engine_old::data::kind_map::KindMap;
 
     fn create() -> KindMap{
         let mut i = KindMap::new();

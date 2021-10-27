@@ -5,12 +5,12 @@ pub mod visible_object;
 
 use web_sys::*;
 use web_sys::WebGlRenderingContext as GL;
-use crate::engine::web_page_helper::element_by_id;
+use crate::engine_old::web_page_helper::element_by_id;
 use wasm_bindgen::JsCast;
 use crate::{JsValue, log};
-use crate::engine::data::id_map::IdMap;
+use crate::engine_old::data::id_map::IdMap;
 use std::sync::{Arc, Mutex};
-use crate::engine::visual::visible_object::VisibleObject;
+use crate::engine_old::visual::visible_object::VisibleObject;
 
 pub struct Visual {
     pub gl: WebGlRenderingContext,

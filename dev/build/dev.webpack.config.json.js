@@ -8,23 +8,23 @@ module.exports = (env, args) => {
 
     return {
         mode: args.mode,
-        entry: './../client/index.js',
+        entry: './../../client/index.js',
         output: {
-            path: path.resolve(__dirname, '../public'),
+            path: path.resolve(__dirname, '../../public'),
             filename: is_production ?
                 '[name].[contenthash].js' :
                 '[name].[name].js'
         },
         resolve: {
-            modules: [path.resolve(__dirname, '../server/node_modules'), 'node_modules']
+            modules: [path.resolve(__dirname, '../../dev/build/node_modules'), 'node_modules']
         },
         plugins: [
             new html_webpack_plugin({
-                template: '../client/index.html'
+                template: '../../client/index.html'
             }),
             new wasm_pack_plugin({
-                crateDirectory: path.resolve(__dirname, '..'),
-                outDir: path.resolve(__dirname, '../public/pkg')
+                crateDirectory: path.resolve(__dirname, '../..'),
+                outDir: path.resolve(__dirname, '../../public/pkg')
             }),
             new webpack.ProvidePlugin({
                 TextDecoder: ['text-encoding', 'TextDecoder'],
