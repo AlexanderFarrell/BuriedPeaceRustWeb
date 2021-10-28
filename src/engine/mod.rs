@@ -1,53 +1,30 @@
+use input::Input;
+use output::Output;
+use player::Player;
+use world::World;
+use crate::engine::player::{PlayerInfo, PlayerPlatform};
+
+mod player;
+mod world;
+mod input;
+mod output;
+
 pub trait EngineComponent {}
 
-pub struct Input;
-pub struct Output;
-pub struct World;
-pub struct Player;
-
-impl EngineComponent for Input {}
-impl EngineComponent for Output {}
-impl EngineComponent for World {}
-impl EngineComponent for Player {}
-
-pub struct Engine {
+pub struct Engine<PI: PlayerInfo, PL: PlayerPlatform> {
+    pub player: Player<PI, PL>,
+    pub world: World,
     pub input: Input,
     pub output: Output,
-    pub world: World,
-    pub player: Player,
 }
 
-impl Engine {
-    pub fn new() -> Engine {
+impl<PI: PlayerInfo, PL: PlayerPlatform> Engine<PI, PL> {
+    pub fn new() -> Engine<PI, PL> {
         Engine {
+            player: Player::new(),
+            world: World::new(),
             input: Input::new(),
             output: Output::new(),
-            world: World::new(),
-            player: Player::new(),
         }
-    }
-}
-
-impl Input {
-    pub fn new() -> Self {
-        Input {}
-    }
-}
-
-impl Output {
-    pub fn new() -> Self {
-        Output {}
-    }
-}
-
-impl World {
-    pub fn new() -> Self {
-        World {}
-    }
-}
-
-impl Player {
-    pub fn new() -> Self {
-        Player {}
     }
 }
