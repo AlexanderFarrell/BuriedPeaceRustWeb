@@ -8,18 +8,94 @@
     <style>
         body {
             margin: 0;
-            padding: 2%;
-            width: 100vw;
+            padding: 0;
+            width: 100%;
             font-size: 20px;
             background-color: black;
             color: white;
             font-family: sans-serif;
+            overflow-x: hidden;
+            /*display: grid;*/
+            /*justify-items: center;*/
+            scroll-behavior: smooth;
+            line-height: 2.5rem;
         }
 
         #Content {
-            max-width: 800px;
+            max-width: min(800px, 90vw);
             margin-left: auto;
             margin-right: auto;
+            /*width: calc(95vw);*/
+            /*background-color: #030303;*/
+        }
+
+        header {
+            position: fixed;
+            max-width: 90vw;
+            top: 0;
+            width: 100%;
+            display: grid;
+            justify-items: right;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .Button {
+            color: white;
+            padding: 10px;
+            background-color: #2b2b59;
+            justify-self: right;
+        }
+
+        .KeyTable {
+            background-color: rgba(1, 91, 227, 0.1);
+        }
+
+        .KeyTable {
+            display: grid;
+            grid-template-columns: auto 2fr;
+            grid-row-gap: 1rem;
+            grid-column-gap: 0.5rem;
+            padding: 0.5rem;
+        }
+
+        .KeyTableArray {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+            box-sizing: border-box;
+            justify-content: space-around;
+            grid-column-gap: 0.5rem;
+        }
+
+        .LightTables .KeyTable, .LightTables .KeyTableArray>div {
+            background-color: rgba(1, 91, 227, 0.1);
+        }
+
+        .KeyTableArrayItem {
+            width: auto;
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        .KeyTable > div {
+            padding: 5px;
+            /*border-bottom: #16162c solid 1px;*/
+        }
+
+        .KeyTable > div:nth-child(2n-1) {
+            color: #b8cdff !important;
+            padding: 0.5rem;
+
+        }
+
+        .KeyTable > div:nth-child(2n) {
+            padding: 0.5rem;
+        }
+
+        .KeyTable div ul, .KeyTable div li {
+            margin: 0;
+            padding-top: 0;
+            padding-bottom: 0;
         }
 
         #TableOfContents {
@@ -31,33 +107,57 @@
             padding-bottom: 0.35rem;
         }
 
+        h1, h2, h3, h4, h5 {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
         h1 {
             text-align: center;
-            background-color: #2b2b59;
+            background-color: #324679;
             padding: 10px;
-            margin-top: 7rem;
+            margin-top: 8rem;
+            margin-bottom: 0.5rem;
         }
 
         a {
             color: #c3dbff;
             text-decoration: none;
+            cursor: pointer;
+            transition: 0.2s;
         }
 
         a:hover {
             color: white;
+            transition: 0.2s;
         }
 
         h2 {
-            background-color: #16162c;
+            padding-top: 0.375rem;
+            padding-bottom: 0.375rem;
+            background-color: #173159;
             text-align: center;
+            margin-top: 4rem;
+            margin-bottom: 0.5rem;
         }
 
         h3 {
             /*text-decoration: underline 1px white;*/
+            margin-top: 4rem;
             width: 100%;
-            text-decoration-line: underline;
-            text-decoration-color: #393977;
-            text-decoration-thickness: 2px;
+            /*text-decoration-line: underline;*/
+            /*text-decoration-style: dotted;*/
+            /*text-decoration-color: rgba(219, 219, 255, 0.5);*/
+            /*text-decoration-thickness: 0.5px;*/
+            border-bottom: rgba(141, 141, 238, 0.5) dotted 1px;
+            margin-bottom: 0.5rem;
+            color: #7389e0;
+        }
+        h4 {
+            font-style: italic;
+            color: #ccccff;
+            padding-top: 1rem;
+            margin-bottom: 0.5rem;
         }
 
 
@@ -94,18 +194,32 @@
             object-fit: contain;
         }
         table {
-            width: 100%;
-            padding: 0.5rem;
+            width: 90%;
+            /*padding: 0.5rem;*/
         }
         th {
             text-align: left;
-            color: #6464e0;
+            color: #647de0;
         }
         td, th {
-            padding: 0.25rem;
+            border: 0.25rem solid black;
+            /*padding: 0.25rem;*/
+        }
+        strong {
+            font-weight: normal;
+            color: #b1b1ff;
+        }
+        .STable {
+            font-size: 0.92rem;
         }
     </style>
 <body>
+<!--<header>-->
+<!--    <a href="#1"><div class="Button">Menu</div></a>-->
+<!--</header>-->
+<div id="Top">
+    &nbsp;
+</div>
 <div id="Content">
     <div id="Logo" style="padding: 20%;">
 <!--        <img src="http://localhost:63342/Users/alexanderfarrell/CLionProjects/BuriedPeace/docs/sdd/d.png">-->
@@ -116,11 +230,14 @@
     <div>
         Design Document
     </div>
-    <h1>Table of Contents</h1>
+    <h1 id="a">Table of Contents</h1>
+    <p><i>Press any link below to navigate to that section</i></p>
     <div id="TableOfContents"></div>
     <h1>Overview</h1>
     <h1>Business Design</h1>
     <h1>Game Design</h1>
+
+    <h1>Engine Design</h1>
     <div>
         <h2>Overview</h2>
         <div>
@@ -157,7 +274,7 @@
                 <path d="M 395.814 289.759 H 465.952 L 465.952 274.759 L 505.952 294.759 L 465.952 314.759 L 465.952 299.759 H 395.814 V 289.759 Z" style="fill: rgb(74, 161, 255);" transform="matrix(-0.644223, 0.764838, -0.764838, -0.644223, 876.249084, 181.916901)" bx:shape="arrow 395.814 274.759 110.138 40 10 40 0 1@a179d2f4"></path>
             </svg>
             <h3>Definitions</h3>
-            <p>Let us define what each o
+            <p>Let us define what each one does.
             <table>
                 <tr>
                     <th>Component</th>
@@ -180,11 +297,219 @@
                     <td>Presents the world to the user.</td>
                 </tr>
             </table>
+            <h3>Examples</h3>
+            <p>Use cases for each one of these include:</p>
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Examples</th>
+                </tr>
+                <tr>
+                    <td>Player</td>
+                    <td>Name, Platform, Saved Profile, Settings</td>
+                </tr>
+                <tr>
+                    <td>World</td>
+                    <td>Physics, Terrain, Game Logic, Characters</td>
+                </tr>
+                <tr>
+                    <td>Input</td>
+                    <td>Keyboard, Mouse, Touch, Controller, Buttons, Checkboxes.</td>
+                </tr>
+                <tr>
+                    <td>Output</td>
+                    <td>Visual (Graphics), Audio, Tactile, Tone, Views.</td>
+                </tr>
+            </table>
+            <h3>Islands</h3>
+            <p>Two components are "islands": separate concepts we want to build bridges to.</p>
+            <ul>
+                <li>Player - The person (or machine in some cases) playing the game.</li>
+                <li>World - The virtual game environment, with characters, entities, systems, laws, etc</li>
+            </ul>
+            <h3>Bridges</h3>
+            <p>Two components are "bridges": each one-way communication routes in opposite directions between the two islands.</p>
+            <ul>
+                <li>Input - Player sends messages to the world.</li>
+                <li>Output - World sends messages to the player.</li>
+            </ul>
+        </div>
+        <div>
+            <h2>Player</h2>
+            <div data-name="player"></div>
+            <div>
+                <h3>Overview</h3>
+                <p>Player is divided into three parts:</p>
+                <ul>
+                    <li>Info</li>
+                    <li>Platform</li>
+                    <li>Preferences</li>
+                </ul>
+                <h3>Structure</h3>
+                <p>Player has generics for info and platform</p>
+                <p>Each game can define their own info and platforms.</p>
+                <div>
+                    <h4>PlayerInfo</h4>
+                    <p>Each game defines its own player info, which keeps track of player information, as well as stores things like user settings.</p>
+                    <p><i>Examples:</i> Name, Groups player is in, Saved Game Data specific to a player.</p>
+                    <h4>PlayerPlatform</h4>
+                    <p>Each build defines its own PlayerPlatform. The player constructor requires a PlayerPlatform to be initialized.</p>
+                </div>
+                <h3>Start</h3>
+                <!--<i>Required Parameters</i>
+                <ul>
+                    <li>PlayerPlatform</li>
+                </ul>
+                <h3>End</h3>
+                <p>Player will break down as normal</p>-->
+                <!--<h3>Methods</h3>
+                <table class="STable">
+                    <tr>
+                        <th>Method</th>
+                        <th>In</th>
+                        <th>Out</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>login</td>
+                        <td>info: I, pref: P</td>
+                        <td>-</td>
+                        <td>Sets info</td>
+                    </tr>
+                    <tr>
+                        <td>logout</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>Removes info</td>
+                    </tr>
+                    <tr>
+                        <td>get_info</td>
+                        <td>-</td>
+                        <td>PlayerInfo: I</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>get_platform</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>is_logged_in</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>-->
+            </div>
+            <div>
+                <h2>World</h2>
+                <div data-name="world"></div>
+                <!--<div>
+                    <h3>Details</h3>
+                    <h4>Purpose</h4>
+                    <h4>Overview</h4>
+                    <h4>Structure</h4>
+                </div>-->
+                <div>
+                    <h3>Realm</h3>
+                    <div data-name="realm"></div>
+                </div>
+                <div>
+                    <h3>Aspect</h3>
+                    <div data-name="aspect"></div>
+                </div>
+                <div class="LightTables">
+                    <h3>Elements</h3>
+                    <h4>Noun</h4>
+                    <div data-name="noun"></div>
+<!--                    <div class="KeyTable">-->
+<!--                        <div>Definition: </div>-->
+<!--                        <div>Represents a single object.</div>-->
+<!--                        <div>Purpose: </div>-->
+<!--                        <div>To keep track of objects.</div>-->
+<!--                        <div>Structure: </div>-->
+<!--                        <div>-->
+<!--                            <div class="KeyTable STable">-->
+<!--                                <div>id</div>-->
+<!--                                <div>The unique id of the noun.</div>-->
+<!--                                <div>states</div>-->
+<!--                                <div>All states on the noun.</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div>-->
+<!--                            Description:-->
+<!--                        </div>-->
+<!--                        <div>-->
+<!--                            A noun represents an object in the world, such as a tree, wind, a character, a tool, etc.-->
+<!--                        </div>-->
+<!--                        <div>Methods: </div>-->
+<!--                        <div>-->
+<!--                            <div class="KeyTable STable">-->
+<!--                                <div>get_id</div>-->
+<!--                                <div>Returns the unique ID..</div>-->
+<!--                                <div>states</div>-->
+<!--                                <div>All states on the noun.</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <h4>State</h4>
+                    <div data-name="state"></div>
+                    <h4>Query</h4>
+                    <div data-name="query"></div>
+                    <h4>Relation</h4>
+                    <div data-name="relation"></div>
+                    <h4>Event</h4>
+                    <div data-name="event"></div>
+                    <h4>Action</h4>
+                    <div data-name="action"></div>
+                    <h4>Progression</h4>
+                    <div data-name="progression"></div>
+                </div>
+            </div>
+            <div>
+                <h2>Input</h2>
+                <div data-name="input"></div>
+                <h3>Overview</h3>
+                <div class="LightTable">
+                    <h3>Keyboard</h3>
+                    <div data-name="keyboard"></div>
+                    <h3>Mouse</h3>
+                    <div data-name="mouse"></div>
+                    <h3>Controller</h3>
+                    <div data-name="controller"></div>
+                    <h3>Binds</h3>
+                    <div data-name="binds"></div>
+                </div>
+            </div>
+            <div>
+                <h2>Output</h2>
+                <div data-name="output"></div>
+                <h3>Overview</h3>
+                <div class="LightTable">
+                    <h3>Tone</h3>
+                    <div data-name="tone"></div>
+                    <h3>Audio</h3>
+                    <div data-name="audio"></div>
+                    <h3>Visual</h3>
+                    <div data-name="visual"></div>
+                    <h3>UI</h3>
+                    <div data-name="UI"></div>
+                    <h3>Tactile</h3>
+                    <div data-name="tactile"></div>
+                </div>
+
+            </div>
         </div>
     </div>
-    <h1>Engine Design</h1>
     <h1>Appendix</h1>
+    <h2>State of Work</h2>
+    <div id="StateOfWork"></div>
     <h1>References</h1>
+    <div id="References"></div>
+    <br>
+    <br>
+    <br>
 </div>
 </body>
 <script>
@@ -235,7 +560,7 @@
             let idNumber = levels.map((e) => {return e}).join('_')
 
             $(eleRef).html(`${displayNumber} ${$(eleRef).html()}`);
-            $(eleRef).id = idNumber;
+            $(eleRef).attr('id', idNumber);
             // $(eleRef).attr('data-count', i);
 
             // elements.push($(eleRef))
@@ -283,9 +608,243 @@
             let t = $(eleRef).prop('tagName')
             let c = t.charAt(1)
 
-            let link = `<a class="h${c}Toc" href="/#${$(eleRef).id}"><div>${$(eleRef).html()}</div></a>`
+            let link = `<a class="h${c}Toc" href="#${$(eleRef).attr('id')}"><div>${$(eleRef).html()}</div></a>`
             tableOfContents.append(link);
         })
+    }
+
+    // function RenderStructOverview(data) {
+    //     let e = $('<div class="KeyTable"></div>')
+    //         .append(`<div>Definition</div><div>${data.Definition}</div>`)
+    //         .append(`<div>Purpose</div><div>${data.Purpose}</div>`)
+    //         .append(`<div>Structure</div><div>${data.Structure}</div>`)
+    //         .append(`<div>Purpose</div><div>${data.Purpose}</div>`)
+    // }
+    //
+    // function RenderData(data) {
+    //     let e = $('<div class="KeyTable"></div>');
+    //
+    //
+    // }
+
+    class StructInfo {
+        constructor(definition=null, purpose=null, structure=null, description=null, methods=null, examples=null, symbol=null) {
+            this.Definition = definition;
+            if (symbol !== null) {
+                this.Symbol = symbol;
+            }
+            this.Purpose = purpose;
+            this.Structure = structure;
+            this.Description = description;
+            this.Methods = methods;
+            if (examples !== null) {
+                this.Examples = examples.split(', ');
+            }
+        }
+    }
+
+    let work_item_count = 0;
+    let work_item_filled_in = 0;
+
+    const data = {
+        "noun": new StructInfo(
+            "A single <strong>entity</strong>.",
+            "To keep track of objects. ",
+            {
+                'id': 'The unique id of the noun',
+                'states': 'All states on the noun'
+            },
+            "A noun represents an object in the world. It is a link between verbs. It is a roadmap. An identifier of one single thing, which can be things, have things and do things.",
+            {
+                'get_id': 'Returns the unique ID...',
+                'states': 'All states on the noun'
+            },
+            "Tree, Terrain, Character, Building, Wind",
+            '⚪️'
+        ),
+        "state": new StructInfo(
+            "An <strong>attribute</strong>, temporary or permanent, of an object.",
+            "Gives characteristics to objects. Can be added, removed, retrieved or set.",
+            {
+
+            },
+            "Represents a single kind of attribute of a noun.",
+            {},
+            'Age, Name, Nationality, Physical Needs',
+            '🔷'
+        ),
+        "query": new StructInfo(
+            "<strong>Observes</strong> an object and returns a value.",
+            "Not all states are known! And not all states should be stored. This introspects an object for attributes.",
+            null,
+            "Returns a state-like value, similar to getting a state",
+            null,
+            "Dangerous, Accompanied, Hurt, Sick",
+            '❓'
+        ),
+        "relation": new StructInfo(
+            "How two objects are <strong>related</strong> or <strong>associated</strong>",
+            null,
+            null,
+            null,
+            null,
+            null,
+            "🔗"
+        ),
+        "event": new StructInfo(
+            "A <strong>notification</strong>/<strong>broadcast</strong> to any listening objects",
+            null,
+            null,
+            null,
+            null,
+            null,
+            '📢'
+        ),
+        "action": new StructInfo(
+            "A <strong>function</strong> performed by a verb, which may take in target verbs",
+            null,
+            null,
+            null,
+            null,
+            null,
+            '🔥'
+        ),
+        "progression": new StructInfo(
+            "A <strong>continually invoked function</strong> at some interval.",
+            null,
+            null,
+            null,
+            null,
+            null,
+            '⚙️'
+        ),
+        "world": new StructInfo(
+            "The virtual game world",
+            "To provide a virtual/fictional reality by which a game can be played",
+            null,
+
+        ),
+        "player": new StructInfo(
+            "Defines the player, and what device they are playing on.",
+            "To facilitate a player playing the game.",
+            {
+                'Info': "Player info. This is generic, so each game can define their own. ",
+                "Platform": "Represents the device the player is playing on. Can never be null. Must be given a type on creating the engine."
+            },
+            "Each game defines its own player info. Every game is different. Player info could have, or not have things such as name, login session, user preferences, saved games, achievements, etc. Also, defines the platform. This way, we can retrieve specific functionality for the device and platform the player is playing on, besides calls to the OS.",
+            {
+                "login": "Sets info",
+                "logout": "Nullifies info",
+                "is_logged_in": "Returns whether info is null or not"
+            }
+        ),
+        "input": new StructInfo(
+
+        ),
+        'output': new StructInfo(
+
+        ),
+        "realm": new StructInfo(
+            "Contains nouns, such as trees, characters, etc.",
+            "To have a place for nouns to be created, destroyed, and accessed via ID.",
+            {
+                "nouns": "BTreeMap of nouns"
+            },
+            null,
+            {
+                "create": "Creates a new empty noun",
+                "destroy": "Destroys a given noun",
+                "get": "Gets a noun given an ID. Returns an Option of a noun."
+            }
+        ),
+        "aspect": new StructInfo(
+            "Facilitates verbs",
+            "Gives animation, definition and connections to nouns.",
+            null,
+            `<p>Aspect facilitates all verb elements, including:</p>${RenderItem(['State', 'Query', 'Relation', 'Event', 'Action', 'Progression'])}`
+        )
+    }
+
+    $('[data-name]').each((index, element) => {
+        let name = $(element).attr('data-name');
+
+        try {
+            let datum = data[name];
+            $(element).append(RenderItem(datum));
+        } catch (e) {
+            console.error(`Could not find data for ${name} - Message: ${e.message}`);
+            $(element).html(`<span style='color: red'>Error: </span> Could not find data for ${name}`);
+        }
+    })
+
+    function RenderItem(data) {
+        let e;
+        work_item_count++;
+
+        if (data === undefined || data === null){
+            return $(`<div style="color: gray">Not yet available</div>`);
+        }
+
+        try {
+            if (data.constructor.name === 'Array') {
+                e = $('<div class="KeyTableArray"></div>');
+                data.forEach((item) => {
+                    let v_view = (typeof item === 'object') ?
+                        RenderItem(item) :
+                        $(`<div>${item}</div>`);
+                    e.append(v_view);
+                    v_view.addClass('KeyTableArrayItem')
+                })
+            } else {
+                e = $('<div class="KeyTable"></div>');
+                for (const [name, value] of Object.entries(data)){
+                    e.append(`<div>${name}</div>`);
+
+                    let v_view = (typeof value === 'object') ?
+                        RenderItem(value) :
+                        $(`<div>${value}</div>`);
+
+                    e.append(v_view);
+                }
+            }
+        } catch (e) {
+            return $(`<div><span style="color: red">Error: </span>Could not retrieve value for data: ${data}</div>`)
+        }
+
+        work_item_filled_in++;
+        return e;
+
+        // return $(`<div>name</div>`)
+        // .insertAfter((typeof data === 'object') ? RenderItem())
+        //
+        // if (typeof data === 'object') {
+        //
+        // }
+    }
+
+    PopulateWorkItems();
+
+    function PopulateWorkItems() {
+        let ratio = work_item_filled_in / work_item_count;
+        let percentage = (ratio * 100).toFixed(1) + "%";
+
+        $('#StateOfWork').append(
+            RenderItem({
+                "Completed Items": work_item_filled_in,
+                "Total Items": work_item_count,
+                "Percentage Complete": percentage,
+                "Completion Bar": `<div style='background-color: black'><div style='background-color: #647de0; width: ${percentage}'>&nbsp;</div></div>`
+            })
+        )
+    }
+
+    const references = $('[data-citation]')
+    PopulateReferences();
+
+    function PopulateReferences() {
+        if (references.length === 0) {
+            $('#References').html("<span style='color: gray'>No references found in document.</span>")
+        }
     }
 
     // function updateTableOfContents() {
