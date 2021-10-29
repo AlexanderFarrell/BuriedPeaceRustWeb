@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>SDD - Buried Peace</title></head>
+    <style>
+        body {
+            margin: 0;
+            padding: 2%;
+            width: 100vw;
+            font-size: 20px;
+            background-color: black;
+            color: white;
+            font-family: sans-serif;
+        }
+
+        #Content {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #TableOfContents {
+
+        }
+
+        #TableOfContents > a > div {
+            padding-top: 0.35rem;
+            padding-bottom: 0.35rem;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: #2b2b59;
+            padding: 10px;
+            margin-top: 7rem;
+        }
+
+        a {
+            color: #c3dbff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: white;
+        }
+
+        h2 {
+            background-color: #16162c;
+            text-align: center;
+        }
+
+        h3 {
+            /*text-decoration: underline 1px white;*/
+            width: 100%;
+            text-decoration-line: underline;
+            text-decoration-color: #393977;
+            text-decoration-thickness: 2px;
+        }
+
+
+        li {
+            padding: 0.5rem 0.5rem;
+        }
+
+        svg {
+            width: 50%;
+            padding: 0 25%;
+        }
+
+        .h1Toc {
+
+        }
+
+        .h2Toc {
+            text-indent: 2rem;
+        }
+
+        .h3Toc {
+            text-indent: 4rem;
+        }
+
+        .h4Toc {
+            text-indent: 6rem;
+        }
+
+        .h5Toc {
+            text-indent: 8rem;
+        }
+        img {
+            width: 100%;
+            object-fit: contain;
+        }
+        table {
+            width: 100%;
+            padding: 0.5rem;
+        }
+        th {
+            text-align: left;
+            color: #6464e0;
+        }
+        td, th {
+            padding: 0.25rem;
+        }
+    </style>
+<body>
+<div id="Content">
+    <div id="Logo" style="padding: 20%;">
+<!--        <img src="http://localhost:63342/Users/alexanderfarrell/CLionProjects/BuriedPeace/docs/sdd/d.png">-->
+    </div>
+    <div style="">
+        Buried Peace
+    </div>
+    <div>
+        Design Document
+    </div>
+    <h1>Table of Contents</h1>
+    <div id="TableOfContents"></div>
+    <h1>Overview</h1>
+    <h1>Business Design</h1>
+    <h1>Game Design</h1>
+    <div>
+        <h2>Overview</h2>
+        <div>
+            <h3>Goals</h3>
+            <ul>
+                <li>Systemic Gameplay</li>
+                <li>Player Agency</li>
+                <li>Simplicity</li>
+                <li>Development Ease</li>
+            </ul>
+            <h3>Engine Overview - Cycle</h3>
+            <p>The engine consists of four foundational parts:</p>
+            <ol>
+                <li>Player</li>
+                <li>World</li>
+                <li>Input</li>
+                <li>Output</li>
+            </ol>
+            <h3>Cycle Concept</h3>
+            <p>All four of these make up a cycle</p>
+            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+                <defs></defs>
+                <rect width="179.914" height="109.113" style="fill: rgb(47, 79, 106);" y="175.689"></rect>
+                <rect width="179.914" height="109.113" style="fill: rgb(47, 79, 106);" y="390.746" x="156.231"></rect>
+                <rect width="179.914" height="109.113" style="fill: rgb(47, 79, 106);" x="320.086" y="175.689"></rect>
+                <rect width="179.914" height="109.113" style="fill: rgb(47, 79, 106);" y="0.1" x="156.154"></rect>
+                <text style="fill: rgb(255, 255, 255); font-family: Arial, sans-serif; font-size: 19.1px; white-space: pre;" x="60.911" y="235.465">Input</text>
+                <text style="fill: rgb(255, 255, 255); font-family: Arial, sans-serif; font-size: 19.1px; white-space: pre;" x="386.378" y="234.021">Output</text>
+                <text style="fill: rgb(255, 255, 255); font-family: Arial, sans-serif; font-size: 19.1px; white-space: pre;" x="215.373" y="55.812">World</text>
+                <text style="fill: rgb(255, 255, 255); font-family: Arial, sans-serif; font-size: 19.1px; white-space: pre;" x="213.422" y="452.988">Player</text>
+                <path d="M 145.507 362.495 H 189.585 L 189.585 347.495 L 229.585 367.495 L 189.585 387.495 L 189.585 372.495 H 145.507 V 362.495 Z" style="fill: rgb(74, 161, 255);" transform="matrix(-0.462727, -0.886501, 0.886501, -0.462727, -112.948738, 666.537109)" bx:shape="arrow 145.507 347.495 84.078 40 10 40 0 1@436742bc"></path>
+                <path d="M 90.659 157.627 H 145.103 L 145.103 142.627 L 185.103 162.627 L 145.103 182.627 L 145.103 167.627 H 90.659 V 157.627 Z" style="fill: rgb(74, 161, 255);" transform="matrix(0.501726, -0.865027, 0.865027, 0.501726, -95.504044, 159.455444)" bx:shape="arrow 90.659 142.627 94.444 40 10 40 0 1@a6cf2a55"></path>
+                <path d="M 348.856 91.559 H 393.323 L 393.323 76.559 L 433.323 96.559 L 393.323 116.559 L 393.323 101.559 H 348.856 V 91.559 Z" style="fill: rgb(74, 161, 255);" transform="matrix(0.476932, 0.87894, -0.87894, 0.476932, 267.344971, -256.11676)" bx:shape="arrow 348.856 76.559 84.467 40 10 40 0 1@cb40a1df"></path>
+                <path d="M 395.814 289.759 H 465.952 L 465.952 274.759 L 505.952 294.759 L 465.952 314.759 L 465.952 299.759 H 395.814 V 289.759 Z" style="fill: rgb(74, 161, 255);" transform="matrix(-0.644223, 0.764838, -0.764838, -0.644223, 876.249084, 181.916901)" bx:shape="arrow 395.814 274.759 110.138 40 10 40 0 1@a179d2f4"></path>
+            </svg>
+            <h3>Definitions</h3>
+            <p>Let us define what each o
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Definition</th>
+                </tr>
+                <tr>
+                    <td>Player</td>
+                    <td>The player and their preferences / settings.</td>
+                </tr>
+                <tr>
+                    <td>World</td>
+                    <td>The game and its logic.</td>
+                </tr>
+                <tr>
+                    <td>Input</td>
+                    <td>The input received from the user.</td>
+                </tr>
+                <tr>
+                    <td>Output</td>
+                    <td>Presents the world to the user.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <h1>Engine Design</h1>
+    <h1>Appendix</h1>
+    <h1>References</h1>
+</div>
+</body>
+<script>
+    numberHeadings();
+    updateTableOfContents()
+
+    // $('#Logo').find('img').attr('src', `${window.location.host}/BuriedPeace/docs/sdd/d.png`)
+
+    function loopQSA(query, f) {
+        const elements = document.querySelectorAll(query);
+        for (let i = 0; i < elements.length; ++i) {
+            f(elements[i], i);
+        }
+    }
+
+    function numberHeadings() {
+        let elements = []
+        let levels = []
+        let i = 1;
+
+        $('h1, h2, h3, h4, h5').each((index, eleRef) => {
+            let t = $(eleRef).prop('tagName')
+            let c = t.charAt(1)
+            let lvl = parseInt(c);
+
+            if (lvl === levels.length) {
+                levels[lvl - 1] += 1;
+                elements[lvl - 1] = $(eleRef);
+            } else if (lvl > levels.length) {
+                levels.push(1);
+                elements.push($(eleRef))
+            } else if (lvl < levels.length) {
+                while (lvl < levels.length) {
+                    elements.pop()
+                    levels.pop()
+                }
+                levels[lvl - 1] += 1;
+                elements[lvl - 1] = $(eleRef);
+            }
+
+            // i = (lvl === levels.length) ? i + 1 : 1;
+            //
+            // if (levels.length < )
+
+
+
+            let displayNumber = levels.map((e) => {return e}).join('.') + '.'
+            let idNumber = levels.map((e) => {return e}).join('_')
+
+            $(eleRef).html(`${displayNumber} ${$(eleRef).html()}`);
+            $(eleRef).id = idNumber;
+            // $(eleRef).attr('data-count', i);
+
+            // elements.push($(eleRef))
+
+            // //1 and 2
+            // if (lvl < elements.length - 1) {
+            //     elements.push($(eleRef))
+            // } else if (lvl === elements.length - 1) {
+            //     //1 and h1
+            //
+            // }
+
+
+
+            //1 and 0
+
+
+
+        })
+
+
+
+        // $('.a').each((i1, e1) => {
+        //     i1 += 1;
+        //     $(e1).html(`${i1}. ${$(e1).html()}`);
+        //     $(e1).id = i1;
+        //
+        //     $(e1).find('.b').each((i2, e2) => {
+        //         i2 += 1;
+        //         $(e2).html(`${i1}.${i2}. ${$(e2).html()}`)
+        //         $(e2).id = `${i1}_${i2}`;
+        //
+        //         $(e2).find('.c').each((i3, e3) => {
+        //             i3 += 1;
+        //             $(e3).html(`${i1}.${i2}.${i3}. ${$(e3).html()}`);
+        //             $(e3).id = `${i1}_${i2}_${i3}`;
+        //         })
+        //     })
+        // })
+    }
+
+    function updateTableOfContents() {
+        let tableOfContents = $('#TableOfContents')
+        $('h1, h2, h3, h4, h5').each((index, eleRef) => {
+            let t = $(eleRef).prop('tagName')
+            let c = t.charAt(1)
+
+            let link = `<a class="h${c}Toc" href="/#${$(eleRef).id}"><div>${$(eleRef).html()}</div></a>`
+            tableOfContents.append(link);
+        })
+    }
+
+    // function updateTableOfContents() {
+    //     let tableOfContents = $('#TableOfContents')
+    //     $('h1').each((i1, e1) => {
+    //         tableOfContents.append($(`<div><a class="h1Toc" href="/#${$(e1).id}">${$(e1).html()}</a></div>`));
+    //         $(e1).find('h2').each((i2, e2) => {
+    //             tableOfContents.append($(`<div><a class="h2Toc" href="/#${$(e2).id}">${$(e2).html()}</a></div>`));
+    //             $(e2).find('h3').each((i3, e3) => {
+    //                 tableOfContents.append($(`<div><a class="h3Toc" href="/#${$(e3).id}">${$(e3).html()}</a></div>`));
+    //             })
+    //         })
+    //     })
+    // }
+
+    /*function numberHeadings() {
+        loopQSA(`h1`, (e_one, index_lvl_1) => {
+            index_lvl_1 += 1;
+            e_one.innerHTML = `${index_lvl_1}. ${e_one.innerHTML}`;
+            e_one.id = index_lvl_1
+
+            loopQSA(`#${e_one.id} > h2`, (e_two, index_lvl_2) => {
+                index_lvl_2 += 1;
+                e_two.innerHTML = `${index_lvl_1}.${index_lvl_2} ${e_two.innerHTML}`;
+                e_two.id = `${index_lvl_1}_${index_lvl_2}`
+
+                loopQSA(`#${e_two.id} > h3`, (e_three, index_lvl_3) => {
+                    index_lvl_3 += 1;
+                    e_three.innerHTML = `${index_lvl_1}.${index_lvl_2}.${index_lvl_3} ${e_three.innerHTML}`;
+                    e_three.id = `${index_lvl_1}_${index_lvl_2}_${index_lvl_3}`;
+                })
+            })
+        });
+    }*/
+
+    /*function updateTableOfContents() {
+        let tableOfContents = document.getElementById('Table of Contents')
+
+        loopQSA(`h1`, (e_one, index_lvl_1) => {
+            let link = document.createElement('a');
+            link.innerHTML = e_one.innerHTML;
+            link.classList.add("h1ToC");
+            link.href = `/#${e_one.id}`;
+            tableOfContents.appendChild(link)
+
+            loopQSA(`#${e_one.id} > h2`, (e_two, index_lvl_2) => {
+                let link_2 = document.createElement('a');
+                link_2.innerHTML = e_two.innerHTML;
+                link_2.classList.add("h2ToC");
+                link_2.href = `/#${e_two.id}`;
+                tableOfContents.appendChild(link_2)
+
+                loopQSA(`#${e_two.id} > h3`, (e_three, index_lvl_3) => {
+                    let link_3 = document.createElement('a');
+                    link_3.innerHTML = e_three.innerHTML;
+                    link_3.classList.add("h3ToC");
+                    link_3.href = `/#${e_three.id}`;
+                    tableOfContents.appendChild(link_3)
+                })
+            })
+        });
+    }*/
+</script>
+</html>

@@ -8,6 +8,7 @@ mod player;
 mod world;
 mod input;
 mod output;
+mod common;
 
 pub trait EngineComponent {}
 
