@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -214,28 +215,43 @@
         }
     </style>
 <body>
-<!--<header>-->
-<!--    <a href="#1"><div class="Button">Menu</div></a>-->
-<!--</header>-->
+<header>
+    <a href="#1"><div class="Button">Menu</div></a>
+</header>
 <div id="Top">
     &nbsp;
 </div>
 <div id="Content">
-    <div id="Logo" style="padding: 20%;">
+    <div id="Logo" style="padding: 20% 10%;">
 <!--        <img src="http://localhost:63342/Users/alexanderfarrell/CLionProjects/BuriedPeace/docs/sdd/d.png">-->
     </div>
-    <div style="">
-        Buried Peace
+    <div style="font-size: 2rem; color: #64a2e0">
+        Project Crawler
     </div>
-    <div>
-        Design Document
+    <div style="font-size: 0.9rem">
+        Software Design Document
+    </div>
+    <div style="font-size: 0.85rem; color: #ffffff; font-weight: lighter">
+        Alexander Farrell
     </div>
     <h1 id="a">Table of Contents</h1>
     <p><i>Press any link below to navigate to that section</i></p>
     <div id="TableOfContents"></div>
     <h1>Overview</h1>
+    <div data-name="overview"></div>
     <h1>Business Design</h1>
+    <h2>Product</h2>
+    <div data-name="product"></div>
+    <h2>R&D</h2>
+    <div data-name="rd"></div>
+    <h2>Marketing & Sales</h2>
+    <div data-name="marketing"></div>
+    <h2>Financial</h2>
+    <div data-name="financial"></div>
+    <h2>Services</h2>
+    <div data-name="services"></div>
     <h1>Game Design</h1>
+    <div data-name="metrics"></div>
 
     <h1>Engine Design</h1>
     <div>
@@ -549,57 +565,12 @@
                 levels[lvl - 1] += 1;
                 elements[lvl - 1] = $(eleRef);
             }
-
-            // i = (lvl === levels.length) ? i + 1 : 1;
-            //
-            // if (levels.length < )
-
-
-
             let displayNumber = levels.map((e) => {return e}).join('.') + '.'
             let idNumber = levels.map((e) => {return e}).join('_')
 
             $(eleRef).html(`${displayNumber} ${$(eleRef).html()}`);
             $(eleRef).attr('id', idNumber);
-            // $(eleRef).attr('data-count', i);
-
-            // elements.push($(eleRef))
-
-            // //1 and 2
-            // if (lvl < elements.length - 1) {
-            //     elements.push($(eleRef))
-            // } else if (lvl === elements.length - 1) {
-            //     //1 and h1
-            //
-            // }
-
-
-
-            //1 and 0
-
-
-
         })
-
-
-
-        // $('.a').each((i1, e1) => {
-        //     i1 += 1;
-        //     $(e1).html(`${i1}. ${$(e1).html()}`);
-        //     $(e1).id = i1;
-        //
-        //     $(e1).find('.b').each((i2, e2) => {
-        //         i2 += 1;
-        //         $(e2).html(`${i1}.${i2}. ${$(e2).html()}`)
-        //         $(e2).id = `${i1}_${i2}`;
-        //
-        //         $(e2).find('.c').each((i3, e3) => {
-        //             i3 += 1;
-        //             $(e3).html(`${i1}.${i2}.${i3}. ${$(e3).html()}`);
-        //             $(e3).id = `${i1}_${i2}_${i3}`;
-        //         })
-        //     })
-        // })
     }
 
     function updateTableOfContents() {
@@ -612,20 +583,6 @@
             tableOfContents.append(link);
         })
     }
-
-    // function RenderStructOverview(data) {
-    //     let e = $('<div class="KeyTable"></div>')
-    //         .append(`<div>Definition</div><div>${data.Definition}</div>`)
-    //         .append(`<div>Purpose</div><div>${data.Purpose}</div>`)
-    //         .append(`<div>Structure</div><div>${data.Structure}</div>`)
-    //         .append(`<div>Purpose</div><div>${data.Purpose}</div>`)
-    // }
-    //
-    // function RenderData(data) {
-    //     let e = $('<div class="KeyTable"></div>');
-    //
-    //
-    // }
 
     class StructInfo {
         constructor(definition=null, purpose=null, structure=null, description=null, methods=null, examples=null, symbol=null) {
@@ -721,7 +678,10 @@
         "world": new StructInfo(
             "The virtual game world",
             "To provide a virtual/fictional reality by which a game can be played",
-            null,
+            {
+                "realm": "Contains nouns, such as trees, characters, etc.",
+                // "aspect":
+            },
 
         ),
         "player": new StructInfo(
@@ -761,7 +721,7 @@
             "Facilitates verbs",
             "Gives animation, definition and connections to nouns.",
             null,
-            `<p>Aspect facilitates all verb elements, including:</p>${RenderItem(['State', 'Query', 'Relation', 'Event', 'Action', 'Progression'])}`
+            `<div>Aspect facilitates all verb elements, including:</div>${RenderItem(['State', 'Query', 'Relation', 'Event', 'Action', 'Progression']).css('width', '90%').prop('outerHTML')}`
         )
     }
 
@@ -813,13 +773,6 @@
 
         work_item_filled_in++;
         return e;
-
-        // return $(`<div>name</div>`)
-        // .insertAfter((typeof data === 'object') ? RenderItem())
-        //
-        // if (typeof data === 'object') {
-        //
-        // }
     }
 
     PopulateWorkItems();
@@ -846,66 +799,5 @@
             $('#References').html("<span style='color: gray'>No references found in document.</span>")
         }
     }
-
-    // function updateTableOfContents() {
-    //     let tableOfContents = $('#TableOfContents')
-    //     $('h1').each((i1, e1) => {
-    //         tableOfContents.append($(`<div><a class="h1Toc" href="/#${$(e1).id}">${$(e1).html()}</a></div>`));
-    //         $(e1).find('h2').each((i2, e2) => {
-    //             tableOfContents.append($(`<div><a class="h2Toc" href="/#${$(e2).id}">${$(e2).html()}</a></div>`));
-    //             $(e2).find('h3').each((i3, e3) => {
-    //                 tableOfContents.append($(`<div><a class="h3Toc" href="/#${$(e3).id}">${$(e3).html()}</a></div>`));
-    //             })
-    //         })
-    //     })
-    // }
-
-    /*function numberHeadings() {
-        loopQSA(`h1`, (e_one, index_lvl_1) => {
-            index_lvl_1 += 1;
-            e_one.innerHTML = `${index_lvl_1}. ${e_one.innerHTML}`;
-            e_one.id = index_lvl_1
-
-            loopQSA(`#${e_one.id} > h2`, (e_two, index_lvl_2) => {
-                index_lvl_2 += 1;
-                e_two.innerHTML = `${index_lvl_1}.${index_lvl_2} ${e_two.innerHTML}`;
-                e_two.id = `${index_lvl_1}_${index_lvl_2}`
-
-                loopQSA(`#${e_two.id} > h3`, (e_three, index_lvl_3) => {
-                    index_lvl_3 += 1;
-                    e_three.innerHTML = `${index_lvl_1}.${index_lvl_2}.${index_lvl_3} ${e_three.innerHTML}`;
-                    e_three.id = `${index_lvl_1}_${index_lvl_2}_${index_lvl_3}`;
-                })
-            })
-        });
-    }*/
-
-    /*function updateTableOfContents() {
-        let tableOfContents = document.getElementById('Table of Contents')
-
-        loopQSA(`h1`, (e_one, index_lvl_1) => {
-            let link = document.createElement('a');
-            link.innerHTML = e_one.innerHTML;
-            link.classList.add("h1ToC");
-            link.href = `/#${e_one.id}`;
-            tableOfContents.appendChild(link)
-
-            loopQSA(`#${e_one.id} > h2`, (e_two, index_lvl_2) => {
-                let link_2 = document.createElement('a');
-                link_2.innerHTML = e_two.innerHTML;
-                link_2.classList.add("h2ToC");
-                link_2.href = `/#${e_two.id}`;
-                tableOfContents.appendChild(link_2)
-
-                loopQSA(`#${e_two.id} > h3`, (e_three, index_lvl_3) => {
-                    let link_3 = document.createElement('a');
-                    link_3.innerHTML = e_three.innerHTML;
-                    link_3.classList.add("h3ToC");
-                    link_3.href = `/#${e_three.id}`;
-                    tableOfContents.appendChild(link_3)
-                })
-            })
-        });
-    }*/
 </script>
 </html>
